@@ -1,0 +1,48 @@
+from password_strength import PasswordStats
+
+def password_strength(password):
+   
+    # Initialize password strength metrics
+    length_score = 0
+    complexity_score = 0
+    uniqueness_score = 0
+
+    # Length metric
+    if len(password) < 8:
+        length_score = 1
+    elif len(password) >= 8 and len(password) < 12:
+        length_score = 2
+    else:
+        length_score = 3
+
+    # Complexity metric
+    stats = PasswordStats(password)
+    if stats.strength() < 0.5:
+        complexity_score = 1
+    elif stats.strength() >= 0.5 and stats.strength() < 0.8:
+        complexity_score = 2
+    else:
+        complexity_score = 3
+
+    # Uniqueness metric (using password-strength library)
+    if stats.entropy_bits < 40:
+        uniqueness_score = 1
+    elif stats.entropy_bits >= 40 and stats.entropy_bits < 60:
+        uniqueness_score = 2
+    else:
+        uniqueness_score = 3
+
+    # Calculate overall password strength score
+    password_strength_score = (length_score + complexity_score + uniqueness_score) / 3
+
+    # Return password strength feedback
+    if password_strength_score < 2:
+        return "Weak"
+    elif password_strength_score >= 2 and password_strength_score < 2.5:
+        return "Medium"
+    else:
+        return "Strong"
+
+# Example usage
+password = input("Enter a password: ")
+print("The password strength is :", password_strength(password))
