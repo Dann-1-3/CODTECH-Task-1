@@ -1,13 +1,6 @@
 **Name:** DANUSH ARVIND S
 
-**Company:** CODTECH IT SOLUTIONS
-
-**ID:** CT08DS9106
-
 **Domain:** Cyber Security and Ethical Hacking
-
-**Duration:** October to November 2024
-
 
 
 ## Overview of the Project
